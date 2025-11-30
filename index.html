@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tò mò cái lờ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+    }
+
+    body {
+      background: #ffd700; /* nền vàng */
+      overflow: hidden;
+    }
+
+    .screen {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #ffd700; /* nền vàng */
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* Text đầu: Tò mò cái lờ */
+    .first-text {
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 800;
+      color: #ff0000; /* đỏ */
+      text-transform: uppercase;
+      text-align: center;
+      animation: fadeOut 0.8s ease-out forwards;
+      animation-delay: 1.2s; /* hiện ~2s rồi bắt đầu tan biến */
+    }
+
+    @keyframes fadeOut {
+      0% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(0.7);
+      }
+    }
+
+    /* Màn hình 2: Học nhi đi má + icon Fuck */
+    .second-wrapper {
+      text-align: center;
+      opacity: 0;
+      transform: scale(0.2);
+    }
+
+    .second-wrapper.show {
+      animation: growIn 1s ease-out forwards;
+    }
+
+    @keyframes growIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.2);
+      }
+      60% {
+        opacity: 1;
+        transform: scale(1.1);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .second-text {
+      font-size: clamp(3rem, 7vw, 5rem);
+      font-weight: 900;
+      color: #111;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .fuck-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem 3rem;
+      border-radius: 999px;
+      border: 6px solid #000;
+      font-size: clamp(2.5rem, 6vw, 4rem); /* siêu to bự */
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      background: #ff0000;
+      color: #fff;
+      text-transform: uppercase;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+      transform-origin: center;
+      animation: pulse 1.2s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      100% {
+        transform: scale(1.08);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Màn hình 1 -->
+  <div id="screen1" class="screen">
+    <div class="first-text">Tò mò cái lờ</div>
+  </div>
+
+  <!-- Màn hình 2 -->
+  <div id="screen2" class="screen hidden">
+    <div id="secondWrapper" class="second-wrapper">
+      <div class="second-text">Học nhi đi má</div>
+      <div class="fuck-icon">FUCK</div>
+    </div>
+  </div>
+
+  <script>
+    // Sau ~2 giây thì ẩn màn 1 và hiện màn 2 với hiệu ứng lớn dần
+    setTimeout(function () {
+      var s1 = document.getElementById("screen1");
+      var s2 = document.getElementById("screen2");
+      var wrapper = document.getElementById("secondWrapper");
+
+      s1.classList.add("hidden");
+      s2.classList.remove("hidden");
+      wrapper.classList.add("show");
+    }, 2000); // 2000 ms = 2s
+  </script>
+</body>
+</html>
